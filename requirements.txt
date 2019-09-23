@@ -1,0 +1,2 @@
+Wand == 0.5.6
+google-cloud-storage == 1.18.0

@@ -1,0 +1,159 @@
+{
+  "EDITOR_STATE": {
+    "allProjectFiles": {
+      "1e36e85e-6cc8-4a9e-8062-67ccfae4363a": {
+        "id": "1e36e85e-6cc8-4a9e-8062-67ccfae4363a",
+        "parent": null,
+        "name": "hiru2309gcptoaws",
+        "type": "DIRECTORY",
+        "isDirectory": true,
+        "children": [
+          "60de54c0-28d4-496c-ac6b-8da8dc5c84bf",
+          "7d34664e-025c-4c5f-abad-1e927048e810",
+          "162a3b9a-e4de-4e96-90a6-559025560dfa"
+        ],
+        "isRemovable": false,
+        "filePath": "hiru2309gcptoaws"
+      },
+      "60de54c0-28d4-496c-ac6b-8da8dc5c84bf": {
+        "id": "60de54c0-28d4-496c-ac6b-8da8dc5c84bf",
+        "parent": "1e36e85e-6cc8-4a9e-8062-67ccfae4363a",
+        "name": "function.js",
+        "type": "JS_LAMBDA",
+        "isDirectory": false,
+        "children": [],
+        "isRemovable": true,
+        "filePath": "hiru2309gcptoaws/function.js",
+        "code": "exports.handler = function(request, response) {\n    \n    response.send({\"message\": \"Successfully executed\"});\n}",
+        "config": {
+          "runtime": "nodejs8",
+          "timeout": 60,
+          "memory": 128,
+          "triggerType": 0
+        },
+        "triggers": [
+          {
+            "resourceName": "http-trigger",
+            "config": {}
+          }
+        ]
+      },
+      "6519c96a-ec95-482e-abee-a555dd410fef": {
+        "id": "6519c96a-ec95-482e-abee-a555dd410fef",
+        "parent": null,
+        "name": "index.js",
+        "type": "JS_FILE",
+        "isDirectory": false,
+        "children": [],
+        "isRemovable": false,
+        "filePath": "index.js",
+        "code": "// This file is used to register all your cloud functions in GCP.\n// DO NOT EDIT/DELETE THIS, UNLESS YOU KNOW WHAT YOU ARE DOING.\n\nexports.hiru2309gcptoawsfunction = require(\"./hiru2309gcptoaws/function.js\").handler;"
+      },
+      "ac79dec4-abfd-4ab9-89dc-ff63086583c0": {
+        "id": "ac79dec4-abfd-4ab9-89dc-ff63086583c0",
+        "parent": null,
+        "name": "main.py",
+        "type": "PYTHON_FILE",
+        "isDirectory": false,
+        "children": [],
+        "isRemovable": false,
+        "filePath": "main.py",
+        "code": "# This file is used to register all your cloud functions in GCP.\n# DO NOT EDIT/DELETE THIS, UNLESS YOU KNOW WHAT YOU ARE DOING.\n\nfrom hiru2309gcptoaws.gcptoawssender import handler as hiru2309gcptoawsgcptoawssender"
+      },
+      "7d34664e-025c-4c5f-abad-1e927048e810": {
+        "id": "7d34664e-025c-4c5f-abad-1e927048e810",
+        "parent": "1e36e85e-6cc8-4a9e-8062-67ccfae4363a",
+        "name": "gcptoawssender.py",
+        "type": "PYTHON_LAMBDA",
+        "isDirectory": false,
+        "children": [],
+        "isRemovable": true,
+        "filePath": "hiru2309gcptoaws/gcptoawssender.py",
+        "code": "from wand.image import Image\nfrom google.cloud import storage\nclient = storage.Client()\nTHUMBNAIL_BUCKET = 'hirutest01'\n\ndef handler(request):\n    # Get the file that has been uploaded to GCS\n    bucket = client.get_bucket('hirutest02')\n    blob = bucket.get_blob('name.png')\n    imagedata = blob.download_as_string()\n    # Create a new image object and resample it\n    newimage = Image(blob=imagedata)\n    newimage.sample(200,200)\n    # Upload the resampled image to the other bucket chnage\n    bucket = client.get_bucket(THUMBNAIL_BUCKET)\n    newblob = bucket.blob('thumbnail-' + 'name')     \n    newblob.upload_from_string(newimage.make_blob())\n    # return \"Successfully executed\"",
+        "config": {
+          "runtime": "python37",
+          "timeout": 60,
+          "memory": 128,
+          "triggerType": 0,
+          "handler": "handler"
+        },
+        "triggers": [
+          {
+            "resourceName": "http-trigger",
+            "config": {}
+          }
+        ]
+      },
+      "162a3b9a-e4de-4e96-90a6-559025560dfa": {
+        "id": "162a3b9a-e4de-4e96-90a6-559025560dfa",
+        "parent": "1e36e85e-6cc8-4a9e-8062-67ccfae4363a",
+        "name": "__init__.py",
+        "type": "PYTHON_FILE",
+        "isDirectory": false,
+        "children": [],
+        "isRemovable": true,
+        "filePath": "hiru2309gcptoaws/__init__.py",
+        "code": ""
+      }
+    },
+    "rootNode": "1e36e85e-6cc8-4a9e-8062-67ccfae4363a",
+    "openFiles": [
+      "60de54c0-28d4-496c-ac6b-8da8dc5c84bf",
+      "7d34664e-025c-4c5f-abad-1e927048e810"
+    ],
+    "currentFileId": "7d34664e-025c-4c5f-abad-1e927048e810",
+    "resources": {
+      "http-trigger": {
+        "name": "http-trigger",
+        "type": "http-trigger",
+        "config": {}
+      }
+    },
+    "customTemplate": {
+      "dialect": null,
+      "definitions": null
+    },
+    "envVariables": [
+      {
+        "lambdaId": "7d34664e-025c-4c5f-abad-1e927048e810",
+        "varKey": "PYTHONPATH",
+        "varValue": "/var/runtime:/var/task/hiru2309gcptoaws",
+        "shouldPersist": true,
+        "displayOnly": false,
+        "editable": true
+      }
+    ],
+    "packageJSON": {
+      "dependencies": {
+        "Wand": {
+          "name": "Wand",
+          "version": "0.5.6",
+          "dev": false,
+          "language": "python"
+        },
+        "google-cloud-storage": {
+          "name": "google-cloud-storage",
+          "version": "1.18.0",
+          "dev": false,
+          "language": "python"
+        }
+      }
+    }
+  },
+  "PROJECT_META": {
+    "projectName": "hiru2309gcptoaws",
+    "projectDescription": "",
+    "projectVersion": "1.0.0",
+    "projectRegion": "us-east1",
+    "platform": "GCP",
+    "platformRegions": {},
+    "lastSave": 1569216497936
+  },
+  "VCS_STATE": {
+    "provider": "GitHub",
+    "repo": {
+      "name": "hiru2309gcptoaws",
+      "url": "https://github.com/HirudineeADRT/hiru2309gcptoaws"
+    }
+  }
+}
